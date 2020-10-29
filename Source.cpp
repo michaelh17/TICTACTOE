@@ -41,6 +41,8 @@ int main() {
 
 	cout<<nm1<<endl;
 	cout<<nm2<<endl;
+
+	cout << "Hello " << nm1 << " " << nm2 << "Welcome to the game!" << endl;
 	
 	return 0;
 }	
