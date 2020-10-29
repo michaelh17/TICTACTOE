@@ -5,13 +5,14 @@ using namespace std;
 
 void rules() {
 	string sel_main;
-	cout << "Tic Tac Toe Rules : " << endl;
+	cout << "TIC TAC TOE GAMES " << endl;
+	cout << "\nTic Tac Toe Rules : " << endl;
 	cout << "1. The game is played on a grid that's 3 squares by 3 squares" << endl;
-	cout << "2. Player 1 are X, Player 2 is O" << endl;
+	cout << "2. Player 1 is X and Player 2 is O" << endl;
 	cout << "3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner" << endl;
 	cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie" << endl;
 
-	cout << "\nDo you want to play Tic Tac Toe (y/n)";
+	cout << "\nDo you want to play Tic Tac Toe (y/n) ? : ";
 	cin >> sel_main;
 
 	if (sel_main == "y" || sel_main == "Y") {
@@ -19,12 +20,10 @@ void rules() {
 	}
 
 	if (sel_main == "n" || sel_main == "N") {
-		cout << "\nAlright , See you next time! ";
+		cout << "\nAlright , See you next time! " << endl;
 		exit(0);
 	}
 }
-
-
 
 int main() {
 	//int sel_main;
@@ -39,10 +38,6 @@ int main() {
 	cout << "\nInput Player 2 Name : ";
 	cin >> nm2;
 
-	cout<<nm1<<endl;
-	cout<<nm2<<endl;
-
-	cout << "Hello " << nm1 << " " << nm2 << "Welcome to the game!" << endl;
 	
 	return 0;
 }	
