@@ -39,6 +39,8 @@ int main() {
 	cout << "\nInput Player 2 Name : ";
 	cin >> nm2;
 
-
+	cout<<nm1<<endl;
+	cout<<nm2<<endl;
+	
 	return 0;
 }	
