@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void rules() {
+void rules() { //Function Rules
 	string sel_main;
 	cout << "TIC TAC TOE GAMES " << endl;
 	cout << "\nTic Tac Toe Rules : " << endl;
@@ -16,7 +16,7 @@ void rules() {
 		cout << "\nDo you want to play Tic Tac Toe (y/n) ? : ";
 		cin >> sel_main;
 
-		if (sel_main == "y") {
+		if (sel_main == "y") {	
 			system("CLS");
 		}
 		else if (sel_main == "n") {
@@ -24,21 +24,27 @@ void rules() {
 			exit(0);
 		}
 		else {
-			cout << "Wrong Input!" << endl;
+			cout << "\nWrong Input!" << endl;
 		}
 	} while (sel_main != "y");
 }
 
+int func_turn(int turn) { //function giliran
+	int tpl;
+	tpl = turn % 2 + 1;
+	return tpl;
+}
+
+
 int main() {
-	//int sel_main;
 	int b = 0;
 	int k = 0;
-	int r = 0;
+	int turn = 0;
 	char nm1[20];
 	char nm2[20];
 	int tictactoe[3][3] = { {1,2,3},{4,5,6},{7,8,9} };
 
-	rules();
+	rules(); // pemanggilan function Rules
 
 	cout << "TIC TAC TOE GAME" << endl;
 	cout << "Input Player 1 Name : ";
@@ -48,10 +54,23 @@ int main() {
 
 	for (b = 0; b < 3; b++) {
 		for (k = 0; k < 3; k++) {
-				cout << "  " << tictactoe[b][k] << " |";
+				cout << "  " << tictactoe[b][k] << "  |";
 		}
 		cout << "\n-----+-----+------";
 		cout << endl;
+	}
+
+	func_turn(turn); //pemanggilan function giliran
+
+	switch (func_turn(turn)) {
+	case 1 :
+		cout << "It's " << nm1 << " Turn!";
+		break;
+
+	case 2 :
+		cout << "It's " << nm2 << " Turn!";
+		break;
+
 	}
 
 	return 0;
