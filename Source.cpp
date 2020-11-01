@@ -20,8 +20,9 @@ void rules() { //Function Rules
 			system("CLS");
 		}
 		else if (sel_main == "n") {
+			system("CLS");
 			cout << "\nAlright , See you next time! " << endl;
-			exit(0);
+			exit(1);
 		}
 		else {
 			cout << "\nWrong Input!" << endl;
@@ -40,6 +41,8 @@ int main() {
 	int b = 0;
 	int k = 0;
 	int turn = 0;
+	int choose, line;
+	int col;
 	char nm1[20];
 	char nm2[20];
 	int tictactoe[3][3] = { {1,2,3},{4,5,6},{7,8,9} };
@@ -54,24 +57,41 @@ int main() {
 
 	for (b = 0; b < 3; b++) {
 		for (k = 0; k < 3; k++) {
-				cout << "  " << tictactoe[b][k] << "  |";
+			cout << "  " << tictactoe[b][k] << "  |";
 		}
 		cout << "\n-----+-----+------";
 		cout << endl;
 	}
 
-	func_turn(turn); //pemanggilan function giliran
+	for (turn = 0; turn < 9; turn++) {
+		func_turn(turn); //pemanggilan function giliran
+		if (func_turn(turn) == 1) {
+			cout << "\nIt's " << nm1 << " Turn!";
+		}
 
-	switch (func_turn(turn)) {
-	case 1 :
-		cout << "It's " << nm1 << " Turn!";
-		break;
+		if (func_turn(turn) == 2) {
+			cout << "\nIt's " << nm2 << " Turn!";
+		}
 
-	case 2 :
-		cout << "It's " << nm2 << " Turn!";
-		break;
+
+		do {
+			cout << "\nEnter the box number you choose : ";
+			cin >> choose;
+
+			if (choose >= 1 && choose <= 3) {
+				line = 0;
+				col = col - 1;
+			}
+			else if (choose >= 4 && choose <= 6) {
+				line = 1;
+				col = col - 4;
+			}
+			else {
+				line = 2;
+				col = col - 7;
+			}
+		} while (col < 1 || col >9 || tictactoe[line][col] == 'x' || tictactoe[line][col] == 'o');
 
 	}
-
 	return 0;
 }	
