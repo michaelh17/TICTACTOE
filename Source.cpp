@@ -31,14 +31,22 @@ void rules() { //Function Rules
 }
 
 
-void tictactoeboard(int b,int k, int tictactoe[3][3]) {
-	for (b = 0; b < 3; b++) {
-		for (k = 0; k < 3; k++) {
-			cout << "  " << tictactoe[b][k] << "  |";
-		}
-		cout << "\n-----+-----+------";
-		cout << endl;
-	}
+void tictactoeboard(char tictactoe[3][3]) {
+	system("CLS");
+	cout << "     |     |     " << endl;
+	cout << "  " << tictactoe[0][0] << "  |  " << tictactoe[0][1] << "  |  " << tictactoe[0][2] << endl;
+
+	cout << "_____|_____|_____" << endl;
+	cout << "     |     |     " << endl;
+
+	cout << "  " << tictactoe[1][0] << "  |  " << tictactoe[1][1] << "  |  " << tictactoe[1][2] << endl;
+
+	cout << "_____|_____|_____" << endl;
+	cout << "     |     |     " << endl;
+
+	cout << "  " << tictactoe[2][0] << "  |  " << tictactoe[2][1] << "  |  " << tictactoe[2][2] << endl;
+
+	cout << "     |     |     " << endl << endl;
 }
 
 
@@ -51,15 +59,14 @@ int func_turn(int turn) { //function giliran
 
 int main() {
 	int b = 0;
-	int k = 0;
-	int turn = 0;
+	int turn;
 	int choose, line;
 	int col = 0;
 	char nm1[20];
 	char nm2[20];
 	char marker;
 	char symbol[2] = { 'X','O' };
-	int tictactoe[3][3] = { {1,2,3},{4,5,6},{7,8,9} };
+	char tictactoe[3][3] = { {'1','2','3'},{'4','5','6'},{'7','8','9'} };
 
 	rules(); // pemanggilan function Rules
 
@@ -69,27 +76,40 @@ int main() {
 	cout << "\nInput Player 2 Name : ";
 	cin >> nm2;
 
-	tictactoeboard(b,k,tictactoe); //pemanggilan function tictactoeboard
+	do {
+		tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
 
-	for (turn = 0; turn < 9; turn++) { //looping maksimal selection
-		func_turn(turn); //pemanggilan function giliran
+		for (turn = 0 ; turn < 2; turn++) {
+			func_turn(turn); //pemanggilan function giliran
+			
+			if (func_turn(turn) == 1) {
+				cout << "\nIt's " << nm1 << " Turn!";
+				marker = symbol[0];
+			}
 
-		if (func_turn(turn) == 1) {
-			cout << "\nIt's " << nm1 << " Turn!";
-			marker = symbol[0];
+			if (func_turn(turn) == 2) {
+				cout << "\nIt's " << nm2 << " Turn!";
+				marker = symbol[1];
+			}
+
+			cout << "\nInsert box number you choose : ";
+			cin >> choose;
+
+			switch (choose) {
+
+			case 1:
+				tictactoe[0][0] = marker;
+				break;
+
+			case 2:
+				tictactoe[0][1] = marker;
+
+			}
+
 		}
+	} while (b==0);
+	tictactoeboard(tictactoe);
 
-		if (func_turn(turn) == 2) {
-			cout << "\nIt's " << nm2 << " Turn!";
-			marker = symbol[1];
-		}
 
-		cout << "\nInsert box number you choose : ";
-		cin >> choose;
-
-		if (choose == 1 && tictactoe[0][0] == 1)
-			tictactoe[0][0] = marker;
-		
-	}
 	return 0;
 }	
