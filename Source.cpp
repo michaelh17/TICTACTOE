@@ -79,9 +79,9 @@ int main() {
 	do {
 		tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
 
-		for (turn = 0 ; turn < 2; turn++) {
+		for (turn = 1; turn <= 2; turn++) {
 			func_turn(turn); //pemanggilan function giliran
-			
+
 			if (func_turn(turn) == 1) {
 				cout << "\nIt's " << nm1 << " Turn!";
 				marker = symbol[0];
@@ -104,8 +104,8 @@ int main() {
 			case 2:
 				tictactoe[0][1] = marker;
 
-			}
 
+			}
 		}
 	} while (b==0);
 	tictactoeboard(tictactoe);
