@@ -50,12 +50,42 @@ void tictactoeboard(char tictactoe[3][3]) { //function  tictactoe board
 }
 
 int winchecker(char tictactoe[3][3]) {
-	if (tictactoe[0][0] == tictactoe[0][1] == tictactoe[0][2]){
-	return 1;
+	//Horizontal
+	if (tictactoe[0][0] == tictactoe[0][1] == tictactoe[0][2]) {
+		return 1;
 	}
-	else if (tictactoe[1][0] == tictactoe[1][1] == tictactoe[1][2]){
-	return 1;
-}
+	else if (tictactoe[1][0] == tictactoe[1][1] == tictactoe[1][2]) {
+		return 1;
+	}
+	else if (tictactoe[2][0] == tictactoe[2][1] == tictactoe[2][2]) {
+		return 1;
+	}
+	//Vertical
+	else if (tictactoe[0][0] == tictactoe[1][0] == tictactoe[2][0]) {
+		return 1;
+	}
+	else if (tictactoe[0][1] == tictactoe[1][1] == tictactoe[2][1]) {
+		return 1;
+	}
+	else if (tictactoe[0][2] == tictactoe[1][2] == tictactoe[2][2]) {
+		return 1;
+	}
+	//Diagonal
+	else if (tictactoe[0][0] == tictactoe[1][1] == tictactoe[2][2]) {
+		return 1;
+	}
+	else if (tictactoe[0][2] == tictactoe[1][1] == tictactoe[2][0]) {
+		return 1;
+	}
+	if (tictactoe[0][0] != '1' && tictactoe[0][1] != '2' && tictactoe[0][2] != '3'
+		&& tictactoe[1][0] != '4' && tictactoe[1][1] != '5' && tictactoe[1][2] != '6'
+		&& tictactoe[2][0] != '7' && tictactoe[2][1] != '8' && tictactoe[2][2] != '9') {
+
+		return 0;
+	}
+	else{
+		return -1;
+	}
 }
 
 
@@ -67,7 +97,7 @@ int func_turn(int turn) { //function giliran
 
 
 int main() {  //MAIN PROGRAM
-	int b = 0;
+	int b;
 	int turn;
 	int choose, line;
 	int col = 0;
@@ -150,6 +180,7 @@ int main() {  //MAIN PROGRAM
 			turn = turn - 1;
 
 			b = winchecker(tictactoe);
+			turn++;
 			}
 		}
 	} while (b == -1);
