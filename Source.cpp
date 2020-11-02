@@ -76,21 +76,23 @@ int main() {
 	cout << "\nInput Player 2 Name : ";
 	cin >> nm2;
 
+
 	do {
+		for (turn = 0; turn < 2; turn++) {
+		
+		func_turn(turn); //pemanggilan function giliran
+
+		
 		tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
-
-		for (turn = 1; turn <= 2; turn++) {
-			func_turn(turn); //pemanggilan function giliran
-
 			if (func_turn(turn) == 1) {
-				cout << "\nIt's " << nm1 << " Turn!";
-				marker = symbol[0];
-			}
-
-			if (func_turn(turn) == 2) {
-				cout << "\nIt's " << nm2 << " Turn!";
-				marker = symbol[1];
-			}
+					cout << "\nIt's " << nm1 << " Turn!";
+					marker = symbol[0];
+				}
+	
+				if (func_turn(turn) == 2) {
+					cout << "\nIt's " << nm2 << " Turn!";
+					marker = symbol[1];
+				}
 
 			cout << "\nInsert box number you choose : ";
 			cin >> choose;
@@ -103,7 +105,35 @@ int main() {
 
 			case 2:
 				tictactoe[0][1] = marker;
-
+				break;
+				
+			case 3:
+				tictactoe[0][2] = marker;
+				break;
+				
+			case 4:
+				tictactoe[1][0] = marker;
+				break;
+				
+			case 5:
+				tictactoe[1][1] = marker;
+				break;
+				
+			case 6:
+				tictactoe[1][2] = marker;
+				break;
+				
+			case 7:
+				tictactoe[2][0] = marker;
+				break;
+			
+			case 8:	
+				tictactoe[2][1] = marker;
+				break;
+				
+			case 9:
+				tictactoe[2][2] = marker;
+				break;
 
 			}
 		}
