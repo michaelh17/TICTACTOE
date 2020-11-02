@@ -16,7 +16,7 @@ void rules() { //Function Rules
 		cout << "\nDo you want to play Tic Tac Toe (y/n) ? : ";
 		cin >> sel_main;
 
-		if (sel_main == "y") {	
+		if (sel_main == "y") {
 			system("CLS");
 		}
 		else if (sel_main == "n") {
@@ -31,7 +31,7 @@ void rules() { //Function Rules
 }
 
 
-void tictactoeboard(char tictactoe[3][3]) {
+void tictactoeboard(char tictactoe[3][3]) { //function  tictactoe board
 	system("CLS");
 	cout << "     |     |     " << endl;
 	cout << "  " << tictactoe[0][0] << "  |  " << tictactoe[0][1] << "  |  " << tictactoe[0][2] << endl;
@@ -49,6 +49,15 @@ void tictactoeboard(char tictactoe[3][3]) {
 	cout << "     |     |     " << endl << endl;
 }
 
+int winchecker(char tictactoe[3][3]) {
+	if (tictactoe[0][0] == tictactoe[0][1] == tictactoe[0][2]){
+	return 1;
+	}
+	else if (tictactoe[1][0] == tictactoe[1][1] == tictactoe[1][2]){
+	return 1;
+}
+}
+
 
 int func_turn(int turn) { //function giliran
 	int tpl;
@@ -57,7 +66,7 @@ int func_turn(int turn) { //function giliran
 }
 
 
-int main() {
+int main() {  //MAIN PROGRAM
 	int b = 0;
 	int turn;
 	int choose, line;
@@ -82,7 +91,6 @@ int main() {
 		
 		func_turn(turn); //pemanggilan function giliran
 
-		
 		tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
 			if (func_turn(turn) == 1) {
 					cout << "\nIt's " << nm1 << " Turn!";
@@ -135,9 +143,16 @@ int main() {
 				tictactoe[2][2] = marker;
 				break;
 
+
+			default :
+				cout << "\nInvalid Input , Please Try Again!";
+
+			turn = turn - 1;
+
+			b = winchecker(tictactoe);
 			}
 		}
-	} while (b==0);
+	} while (b == -1);
 	tictactoeboard(tictactoe);
 
 
