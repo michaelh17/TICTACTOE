@@ -84,7 +84,7 @@ int winchecker(char tictactoe[3][3]) {
 		return 0;
 	}
 	else{
-		return -1;
+		return 2;
 	}
 }
 
@@ -97,7 +97,7 @@ int func_turn(int turn) { //function giliran
 
 
 int main() {  //MAIN PROGRAM
-	int b;
+	int b = 0;
 	int turn;
 	int choose, line;
 	int col = 0;
@@ -106,6 +106,7 @@ int main() {  //MAIN PROGRAM
 	char marker;
 	char symbol[2] = { 'X','O' };
 	char tictactoe[3][3] = { {'1','2','3'},{'4','5','6'},{'7','8','9'} };
+	char winner[20];
 
 	rules(); // pemanggilan function Rules
 
@@ -118,74 +119,88 @@ int main() {  //MAIN PROGRAM
 
 	do {
 		for (turn = 0; turn < 2; turn++) {
-		
-		func_turn(turn); //pemanggilan function giliran
 
-		tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
+			func_turn(turn); //pemanggilan function giliran
+
+			tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
 			if (func_turn(turn) == 1) {
-					cout << "\nIt's " << nm1 << " Turn!";
-					marker = symbol[0];
-				}
-	
-				if (func_turn(turn) == 2) {
-					cout << "\nIt's " << nm2 << " Turn!";
-					marker = symbol[1];
-				}
+				cout << "\nIt's " << nm1 << " Turn!";
+				marker = symbol[0];
+			}
+
+			if (func_turn(turn) == 2) {
+				cout << "\nIt's " << nm2 << " Turn!";
+				marker = symbol[1];
+			}
 
 			cout << "\nInsert box number you choose : ";
 			cin >> choose;
-
 			switch (choose) {
 
 			case 1:
-				tictactoe[0][0] = marker;
+				if (choose == 1 && tictactoe[0][0] == '1') {
+					tictactoe[0][0] = marker;
+				}
 				break;
 
 			case 2:
 				tictactoe[0][1] = marker;
 				break;
-				
+
 			case 3:
 				tictactoe[0][2] = marker;
 				break;
-				
+
 			case 4:
 				tictactoe[1][0] = marker;
 				break;
-				
+
 			case 5:
 				tictactoe[1][1] = marker;
 				break;
-				
+
 			case 6:
 				tictactoe[1][2] = marker;
 				break;
-				
+
 			case 7:
 				tictactoe[2][0] = marker;
 				break;
-			
-			case 8:	
+
+			case 8:
 				tictactoe[2][1] = marker;
 				break;
-				
+
 			case 9:
 				tictactoe[2][2] = marker;
 				break;
 
-
-			default :
+			default:
 				cout << "\nInvalid Input , Please Try Again!";
 
-			turn = turn - 1;
+				turn = turn - 1;
+				break;
 
-			b = winchecker(tictactoe);
-			turn++;
+
+				b = winchecker(tictactoe);
+				turn++;
 			}
 		}
-	} while (b == -1);
+	} while (b > 1);
 	tictactoeboard(tictactoe);
 
+	while (b == 1);
+
+	if (func_turn(turn) == 1) {
+		cout << "\n\aPlayer " << nm1 << " Win!";
+	}
+
+	else if (func_turn(turn) == 2) {
+		cout << "\n\aPlayer " << nm2 << " Win!";
+	}
+	else {
+		cout << "\nGame Draw!";
+	}
 
 	return 0;
 }	
