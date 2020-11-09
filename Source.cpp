@@ -12,6 +12,7 @@ void rules() { //Function Rules
 	cout << "2. Player 1 is X and Player 2 is O" << endl;
 	cout << "3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner" << endl;
 	cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie" << endl;
+	cout << "5. If you wanna play this game again , player 1 and player 2 will be switched (so player 2 will be the first player)" << endl;
 
 	do {
 		cout << "\nDo you want to play Tic Tac Toe (y/n) ? : ";
@@ -50,60 +51,63 @@ void tictactoeboard(char tictactoe[3][3]) { //function  tictactoe board
 	cout << "     |     |     " << endl << endl;
 }
 
-void choosing(char tictactoe[3][3], int choose, char marker, int turn) {
+void choosing(char tictactoe[3][3], int choose, char marker) {
 	cout << "\nInsert box number you choose : ";
 	cin >> choose;
 
-	switch (choose) {
+	if (choose == 1 && tictactoe[0][0] == '1') {
 
-	case 1:
 		tictactoe[0][0] = marker;
-		break;
+	}
 
-	case 2:
+	else if (choose == 2 && tictactoe[0][1] == '2') {
 		tictactoe[0][1] = marker;
-		break;
-
-	case 3:
-		tictactoe[0][2] = marker;
-		break;
-
-	case 4:
-		tictactoe[1][0] = marker;
-		break;
-
-	case 5:
-		tictactoe[1][1] = marker;
-		break;
-
-	case 6:
-		tictactoe[1][2] = marker;
-		break;
-
-	case 7:
-		tictactoe[2][0] = marker;
-		break;
-
-	case 8:
-		tictactoe[2][1] = marker;
-		break;
-
-	case 9:
-		tictactoe[2][2] = marker;
-		break;
-
-	default:
-		cout << "\nInvalid Input , Please Try Again! Press Enter T o Continue . . .";
-
-		turn--;
-
-		getch();
-		break;
 
 	}
+	else if (choose == 3 && tictactoe[0][2] == '3') {
+
+		tictactoe[0][2] = marker;
+	}
+
+	else if (choose == 4 && tictactoe[1][0] == '4') {
+
+		tictactoe[1][0] = marker;
+	}
+
+	else if (choose == 5 && tictactoe[1][1] == '5') {
+
+		tictactoe[1][1] = marker;
+	}
+
+	else if (choose == 6 && tictactoe[1][2] == '6') {
+
+		tictactoe[1][2] = marker;
+	}
+
+	else if (choose == 7 && tictactoe[2][0] == '7') {
+
+		tictactoe[2][0] = marker;
+	}
+
+	else if (choose == 8 && tictactoe[2][1] == '8') {
+
+		tictactoe[2][1] = marker;
+	}
+
+	else if (choose == 9 && tictactoe[2][2] == '9') {
+
+		tictactoe[2][2] = marker;
+	}
+
+	else {
+		cout << "\nInvalid Input , Please Try Again! Press Enter T o Continue . . .";
+
+		getch();
+	}
+
 }
 
-int winchecker(char tictactoe[3][3]) {
+int winchecker(char tictactoe[3][3], int turn) {
 	//Horizontal
 	if (tictactoe[0][0] == tictactoe[0][1] && tictactoe[0][1] == tictactoe[0][2]) {
 		return 1;
@@ -146,8 +150,25 @@ int winchecker(char tictactoe[3][3]) {
 
 int func_turn(int turn) { //function giliran
 	int tpl;
-	tpl = turn % 2 + 1;
+	tpl = turn % 2;
 	return tpl;
+
+	//tpl = turn % 2 + 1;
+//	return tpl;
+}
+
+int reset(char tictactoe[3][3], int turn) {
+	tictactoe[0][0] = '1';
+	tictactoe[0][1] = '2';
+	tictactoe[0][2] = '3';
+	tictactoe[1][0] = '4';
+	tictactoe[1][1] = '5';
+	tictactoe[1][2] = '6';
+	tictactoe[2][0] = '7';
+	tictactoe[2][1] = '8';
+	tictactoe[2][2] = '9';
+	turn = 0;
+
 }
 
 
@@ -155,7 +176,6 @@ int main() {  //MAIN PROGRAM
 	int b = 0;
 	int turn = 0;
 	int choose = 0;
-	int line;
 	int col = 0;
 	char nm1[20];
 	char nm2[20];
@@ -163,54 +183,79 @@ int main() {  //MAIN PROGRAM
 	char symbol[2] = { 'X','O' };
 	char tictactoe[3][3] = { {'1','2','3'},{'4','5','6'},{'7','8','9'} };
 	char winner[20];
+	string decision;
 
 	rules(); // pemanggilan function Rules
 
-	cout << "TIC TAC TOE GAME" << endl;
-	cout << "Input Player 1 Name : ";
-	cin >> nm1;
-	cout << "\nInput Player 2 Name : ";
-	cin >> nm2;
-
-
 	do {
+		reset(tictactoe, turn);
 
-		func_turn(turn); //pemanggilan function giliran
+		cout << "TIC TAC TOE GAME" << endl;
+		cout << "Input Player 1 Name : ";
+		cin >> nm1;
+		cout << "\nInput Player 2 Name : ";
+		cin >> nm2;
 
-		tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
-		if (func_turn(turn) == 1) {
-			cout << "\nIt's " << nm1 << " Turn!";
-			marker = symbol[0];
+
+
+		do {
+
+			turn++;
+			func_turn(turn); //pemanggilan function giliran
+
+			tictactoeboard(tictactoe); //pemanggilan function tictactoeboard
+			if (func_turn(turn) == 1) {
+				cout << "\nIt's " << nm1 << " Turn!";
+				marker = symbol[0];
+			}
+
+			else {
+				cout << "\nIt's " << nm2 << " Turn!";
+				marker = symbol[1];
+			}
+
+			cout << turn;
+			choosing(tictactoe, choose, marker);
+
+			b = winchecker(tictactoe, turn);
+			//	turn++;
+
+		} while (b == -1);
+
+		tictactoeboard(tictactoe);
+
+		if (b == 1) {
+
+			if (func_turn(turn) == 1) {
+				cout << "\n\aPlayer " << nm1 << " Win!" << endl;
+			}
+
+			else {
+
+				cout << "\n\aPlayer " << nm2 << " Win!" << endl;
+			}
 		}
-
-		if (func_turn(turn) == 2) {
-			cout << "\nIt's " << nm2 << " Turn!";
-			marker = symbol[1];
-		}
-
-		choosing(tictactoe, choose, marker, turn);
-
-
-		b = winchecker(tictactoe);
-
-		turn++;
-
-	} while (b == -1);
-	tictactoeboard(tictactoe);
-
-	if (b == 1) {
-
-		if (func_turn(turn) == 1) {
-			cout << "\n\aPlayer " << nm1 << " Win!";
-		}
-
 		else {
-
-			cout << "\n\aPlayer " << nm2 << " Win!";
+			cout << "\n\aGame Draw!" << endl;
 		}
-	}
-	else {
-		cout << "\n\aGame Draw!";
-	}
+
+		do {
+			cout << "\nDo you want to play again ? (y/n) : ";
+			cin >> decision;
+
+			if (decision == "y") {
+				system("CLS");
+
+			}
+			else if (decision == "n") {
+				system("CLS");
+				cout << "\n\aAlright , See you next time! " << endl;
+				exit(1);
+			}
+			else {
+				cout << "\nWrong Input!" << endl;
+			}
+		} while (decision != "y");
+	} while (decision == "y");
 	return 0;
 }
