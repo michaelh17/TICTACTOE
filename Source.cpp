@@ -110,7 +110,6 @@ void reset(char tictactoe[3][3], int turn) {
 	tictactoe[2][1] = '8';
 	tictactoe[2][2] = '9';
 	turn = 0;
-
 }
 
 
