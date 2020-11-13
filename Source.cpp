@@ -202,9 +202,10 @@ int main() {  //MAIN PROGRAM
 			}
 
 			else {
-				cout << "\nInvalid Input , Please Try Again! Press Enter T o Continue . . .";
+				cout << "\nInvalid Input , Please Try Again! Press Enter To Continue . . .";
 				turn--;
 				//getch();
+				
 			}
 
 			b = winchecker(tictactoe);
